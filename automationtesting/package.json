@@ -1,0 +1,17 @@
+{
+  "name": "automationtesting",
+  "version": "1.0.0",
+  "description": "E2E Automated Testing framework powered by Cypress",
+  "author": "Luis Portillo",
+  "scripts": {
+    "cy:open": "cypress open --e2e",
+    "cy:run": "cypress run"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^14.2.1",
+    "typescript": "^5.8.2",
+    "@badeball/cypress-cucumber-preprocessor": "^22.0.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4"
+  }
+}

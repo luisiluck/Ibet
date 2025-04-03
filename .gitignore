@@ -134,3 +134,16 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+#macOS
+.DS_Store
+# Windows
+Thumbs.db
+# Linux
+*~
+# JetBrains IDEs
+.idea/
+# VSCode
+.vscode/
+# Local History for CLion
+.idea/localHistory/

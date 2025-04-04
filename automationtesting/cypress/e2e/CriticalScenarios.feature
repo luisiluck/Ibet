@@ -8,7 +8,7 @@ Feature: Critical scenarios
     When a Shop item is bought
     Then a notification should say
       """
-      You've earned 1 rewards!
+      Your reward has been added
       """
 
   Scenario: Succesfully set a Wager Limit

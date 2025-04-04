@@ -9,9 +9,11 @@
   },
   "license": "ISC",
   "dependencies": {
-    "cypress": "^14.2.1",
-    "typescript": "^5.8.2",
     "@badeball/cypress-cucumber-preprocessor": "^22.0.0",
-    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4"
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4",
+    "cypress": "^14.2.1",
+    "cypress-wait-until": "^3.0.2",
+    "lodash": "^4.17.21",
+    "typescript": "^5.8.2"
   }
 }

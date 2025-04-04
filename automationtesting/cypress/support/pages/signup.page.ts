@@ -1,54 +1,64 @@
 import BasePage from "./base.page";
 import { url } from "../utils/commons"
+import 'cypress-wait-until';
 
 @url('/?modal=%2Fen%2Faccount%2Fsign-up')
 class SignupPage extends BasePage{
 
     private email = 'input[type=email]'
     private password = 'input[type=password]'
-    private continue = '[data-v-test-id=step1-submit]'
-    private firstName = '[name=firstName]'
-    private lastName = '[name=lastName]'
-    private male = '[name=male]'
-    private female = '[name=female]'
-    private day = '[placeholder=Day]'
-    private month = '[placeholder=Month]'
-    private year = '[placeholder=Year]'
-    private address = '[name=adress]'
-    private postCode = '[name=postcode]'
-    private phone = "[placeholder='Mobile number']"
-    private agree = '#agreeAllCheckbox'
-    private submit = 'data-v-test-id=step2-submit'
+    private continue = '[data-v-test-id=step1-submit]:not([disabled])'
+    private continueDisabled = '[data-v-test-id=step1-submit][disabled]'
+    private firstName = 'input[name=firstName]'
+    private lastName = 'input[name=lastName]'
+    private male = 'input[name=male]'
+    private female = 'input[name=female]'
+    private day = 'input[placeholder=Day]'
+    private month = 'input[placeholder=Month]'
+    private year = 'input[placeholder=Year]'
+    private address = 'input[name=address]'
+    private city = 'input[name=city]'
+    private postCode = 'input[name=postcode]'
+    private phone = "input[placeholder='Mobile number']"
+    private agree = 'input#agreeAllCheckbox'
+    private submit = '[data-v-test-id=step2-submit]:not([disabled])'
+    private submitDisabled = '[data-v-test-id=step2-submit][disabled]'
 
 
     private get wrapper(){
         return cy.get('magic-ui-modal')
     }
 
-    get emailField(){
-        return this.wrapper.find(this.email)
-    }
-
-    get passwordField(){
-        return this.wrapper.find(this.password)
+    get continueButtonDisabled(){
+        return this.wrapper.find(this.continueDisabled, {timeout: 2000})
     }
 
     get continueButton(){
-        cy.wait(1000)
-        return this.wrapper.find(this.continue)
+        return this.wrapper.find(this.continue, {timeout: 2000})
+    }
+
+    get submitButtonDisabled(){
+        cy.scrollTo('top')
+        return this.wrapper.find(this.submitDisabled, {timeout: 2000})
+    }
+    get submitButton(){
+        return this.wrapper.find(this.submit, {timeout: 2000})
     }
 
     performSignup(data){
-        Object.entries(data).forEach(([k,v]) =>{
-            this.wrapper.find(this[k]).then( el =>{
-                if (v === 'click'){
-                    el[0].click()
-                } else if (v === 'check'){
-                    el[0].check()
-                }else{
-                    el[0].type
-                }
-            }).type(v as string)
+        Object.entries<string>(data).forEach(([k,v]) =>{
+            if (k === 'gender'){
+                k = v;
+                v = 'check';
+            }
+            let el = this.wrapper.find(this[k])
+            if (v === 'click'){
+                el.click()
+            } else if (v === 'check'){
+                el.check()
+            }else if (v){ 
+                el.type(v as string)
+            }
         })
     }
 }

@@ -2,8 +2,10 @@ import { When, Then, Given, DataTable } from "@badeball/cypress-cucumber-preproc
 import LoginPage from "../pages/login.page";
 import shopPage from "../pages/shop.page";
 import CreateLimitsPage from "../pages/createlimits.page";
-import cookiesNotification from "../pages/components/cookiesNotification";
+import CookiesNotification from "../pages/components/cookiesNotification";
 import signupPage from "../pages/signup.page";
+import BasePage from "../pages/base.page";
+const _ =  require('lodash');
 
 Given("a logged in user", () => {
   const email = Cypress.env('LOGIN_EMAIL');
@@ -11,12 +13,14 @@ Given("a logged in user", () => {
   if (!email || !password) {
     throw new Error('email or password for user login are not set in environment variables');
   }
-  LoginPage.init();
+  LoginPage.visit();
+  CookiesNotification.acceptCookies();
   LoginPage.login(email, password);
 });
 
 Given("the {string} page is open", (page: string) => {
-  require(`../pages/${page.toLowerCase()}.page.ts`).default.visit();
+  cy.wrap(require(`../pages/${page.toLowerCase()}.page.ts`).default).as('currentPage')
+  cy.get<BasePage>('@currentPage').then(page => page.visit())
 })
 
 When("a Shop item is bought", () => {
@@ -30,13 +34,19 @@ When("a Limit is set with next values", (table: DataTable) => {
   CreateLimitsPage.periodSelect(data['period']);
   CreateLimitsPage.setAmout(data['amount']);
   CreateLimitsPage.submit();
-});
+})
 
-When("a signup is performed", function () {
-  cookiesNotification.acceptCookies()
-  signupPage.performSignup({email: 'a@b.co', password: '12345qQ!', continue: 'click'})
-});
+When("a signup is performed", (table: DataTable) => {
+  CookiesNotification.acceptCookies()
+  signupPage.performSignup(table.hashes()[0]);
+})
 
 Then("a notification should say", (message: string) => {
   cy.contains(message).should('be.visible');
+})
+
+Then("the {string} should {string}", (element: string, action: string) => {
+  cy.get<BasePage>('@currentPage').then(page => {
+    page[_.camelCase(element)].should(action);
+  })
 })

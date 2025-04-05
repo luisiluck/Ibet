@@ -24,7 +24,7 @@ jobs:
             -e CYPRESS_LOGIN_EMAIL=${{ secrets.LOGIN_EMAIL }} \
             -e CYPRESS_LOGIN_PASSWORD=${{ secrets.LOGIN_PASSWORD }} \
             -v ${{ github.workspace }}/reports:/app/cypress/reports \
-            ghcr.io/usuario/mi-repo/automationtesting:latest
+            ghcr.io/luisiluck/ibet/automationtesting:latest
 
       - name: Upload Cypress report as artifact
         if: always()

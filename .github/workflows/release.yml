@@ -30,6 +30,8 @@ jobs:
       - name: get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
+        with:
+          path: automationtesting/package.json
 
       - name: Build and push multiplatform Docker image
         uses: docker/build-push-action@v5

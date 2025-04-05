@@ -1,3 +1,5 @@
+import 'cypress-mochawesome-reporter/register';
+
 // Avoid printing fetch & xhr logs 
 const app = window.top;
 if (!app.document.head.querySelector("[data-hide-command-log-request]")) {

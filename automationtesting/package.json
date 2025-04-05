@@ -5,13 +5,16 @@
   "author": "Luis Portillo",
   "scripts": {
     "cy:open": "cypress open --e2e",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "cy:docker:build": "docker build -t automationtesting ."
   },
   "license": "ISC",
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^22.0.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4",
     "cypress": "^14.2.1",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-on-fix": "^1.1.0",
     "cypress-wait-until": "^3.0.2",
     "lodash": "^4.17.21",
     "typescript": "^5.8.2"

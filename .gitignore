@@ -154,3 +154,7 @@ Thumbs.db
 
 # screeenshots
 **/screenshots/
+
+# reports
+**/reports/
+reports/

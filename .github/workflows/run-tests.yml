@@ -20,7 +20,7 @@ jobs:
         run: |
           docker run --rm \
             -e CYPRESS_USER=${{ secrets.USER }} \
-            -e CYPRES_PASSWORD=${{ secrets.PASSWORD }} \
+            -e CYPRESS_PASSWORD=${{ secrets.PASSWORD }} \
             -e CYPRESS_LOGIN_EMAIL=${{ secrets.LOGIN_EMAIL }} \
             -e CYPRESS_LOGIN_PASSWORD=${{ secrets.LOGIN_PASSWORD }} \
             -v ${{ github.workspace }}/reports:/app/cypress/reports \

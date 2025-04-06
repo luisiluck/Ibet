@@ -31,7 +31,7 @@ jobs:
           docker run --rm \
             -e CYPRESS_USER=${{ vars.USER }} \
             -e CYPRESS_PASSWORD=${{ secrets.PASSWORD }} \
-            -e CYPRESS_LOGIN_EMAIL=${{ vaers.LOGINEMAIL }} \
+            -e CYPRESS_LOGIN_EMAIL=${{ vars.LOGINEMAIL }} \
             -e CYPRESS_LOGIN_PASSWORD=${{ secrets.LOGINPASSWORD }} \
             -v ${{ github.workspace }}/reports:/app/cypress/reports \
             ghcr.io/luisiluck/ibet/automationtesting:latest

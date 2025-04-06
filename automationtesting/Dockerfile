@@ -7,4 +7,4 @@ COPY . .
 RUN npm install
 RUN chmod +x run-tests.sh
 
-ENTRYPOINT ["./run-tests.sh"]
+ENTRYPOINT ["npx", "cypress", "run"]

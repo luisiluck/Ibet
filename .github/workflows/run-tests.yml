@@ -19,13 +19,6 @@ jobs:
       - name: Create folder for Cypress reports
         run: mkdir -p ./reports
 
-      - name: print env
-        run: |
-          echo "USER: ${{ vars.USER }}"
-          echo "PASSWORD: ${{ secrets.PASSWORD }}"
-          echo "LOGINEMAIL: ${{ vars.LOGINEMAIL }}"
-          echo "LOGINPASSWORD: ${{ secrets.LOGINPASSWORD }}"  
-
       - name: Run Docker container with tests
         run: |
           docker run --rm \

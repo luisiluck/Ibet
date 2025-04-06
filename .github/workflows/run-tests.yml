@@ -21,18 +21,18 @@ jobs:
 
       - name: print env
         run: |
-          echo "USER: ${{ secrets.USER }}"
+          echo "USER: ${{ vars.USER }}"
           echo "PASSWORD: ${{ secrets.PASSWORD }}"
           echo "LOGINEMAIL: ${{ vars.LOGINEMAIL }}"
-          echo "LOGIN_PASSWORD: ${{ vars.LOGIN_PASSWORD }}"  
+          echo "LOGINPASSWORD: ${{ secrets.LOGINPASSWORD }}"  
 
       - name: Run Docker container with tests
         run: |
           docker run --rm \
-            -e CYPRESS_USER=${{ secrets.USER }} \
+            -e CYPRESS_USER=${{ vars.USER }} \
             -e CYPRESS_PASSWORD=${{ secrets.PASSWORD }} \
-            -e CYPRESS_LOGIN_EMAIL=${{ env.LOGIN_EMAIL }} \
-            -e CYPRESS_LOGIN_PASSWORD=${{ env.LOGIN_PASSWORD }} \
+            -e CYPRESS_LOGIN_EMAIL=${{ vaers.LOGINEMAIL }} \
+            -e CYPRESS_LOGIN_PASSWORD=${{ secrets.LOGINPASSWORD }} \
             -v ${{ github.workspace }}/reports:/app/cypress/reports \
             ghcr.io/luisiluck/ibet/automationtesting:latest
 

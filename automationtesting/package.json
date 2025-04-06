@@ -6,6 +6,8 @@
   "scripts": {
     "cy:open": "cypress open --e2e",
     "cy:run": "cypress run",
+    "cy:run:chrome": "cypress run --browser chrome",
+    "cy:run:chrome:mobile": "cypress run --browser chrome --config viewportWidth=375,viewportHeight=812",
     "cy:docker:build": "docker build -t automationtesting ."
   },
   "license": "ISC",

@@ -23,8 +23,8 @@ jobs:
         run: |
           echo "USER: ${{ secrets.USER }}"
           echo "PASSWORD: ${{ secrets.PASSWORD }}"
-          echo "LOGIN_EMAIL: ${{ env.LOGINEMAIL }}"
-          echo "LOGIN_PASSWORD: ${{ env.LOGIN_PASSWORD }}"  
+          echo "LOGINEMAIL: ${{ vars.LOGINEMAIL }}"
+          echo "LOGIN_PASSWORD: ${{ vars.LOGIN_PASSWORD }}"  
 
       - name: Run Docker container with tests
         run: |
